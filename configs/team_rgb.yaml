@@ -2,7 +2,7 @@
 seed: 42
 output_dir: outputs/WLASL_TEAM_RGB_original_capacity_5w1s_seed42
 data:
-  metadata: ../mfpa_fslr/data/wlasl_60_20_20/metadata.csv
+  metadata: data/wlasl_60_20_20/metadata.csv
   cache_dir: data/wlasl_rgb_landmarks_t8
 model:
   backbone: resnet50

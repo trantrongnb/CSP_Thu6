@@ -1,8 +1,8 @@
-# Same data, encoder, D/M and training budget as motion_part_full.yaml.
+# Starting hyperparameters from the design; not empirically tuned.
 seed: 42
-output_dir: outputs/WLASL_A2_5w1s_seed42
+output_dir: outputs/WLASL_A5_5w1s_seed42
 data:
-  metadata: ../mfpa_fslr/data/wlasl_60_20_20/metadata.csv
+  metadata: data/wlasl_60_20_20/metadata.csv
   cache_dir: data/wlasl_rgb_landmarks_t8
 model:
   backbone: resnet50
@@ -14,15 +14,14 @@ model:
   pattern_tokens: 16
   frames: 8
   heads: 8
-  variant: A2
-  parts:
-  - 0
-  - 1
-  - 2
+  variant: A5
+  parts: [0, 1, 2]
+  guidance_mode: full
   lambda_motion: 1.0
   support_aggregation: frames
   support_adaptation: true
   token_reduction: mean
+  # Matches the released TEAM code. "joint" selects design section 9.2.
   negative_reduction: separate
   negative_weights: opponent
   temperature: 0.2
