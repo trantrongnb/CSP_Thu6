@@ -1,0 +1,3 @@
+[submodule "team-original"]
+	path = motion_part_fsl/references/team_original
+	url = https://github.com/leesb7426/TEAM.git

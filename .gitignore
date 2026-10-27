@@ -5,5 +5,8 @@ __pycache__/
 .pytest_cache/
 mfpa_fslr/data/
 mfpa_fslr/outputs/
+motion_part_fsl/data/
+motion_part_fsl/outputs/
+motion_part_fsl/.torch_hub/
 /WLASL.zip
 /WLASL/

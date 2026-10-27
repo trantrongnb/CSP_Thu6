@@ -1,0 +1,55 @@
+# Original TEAM head dimensions/scoring; optimizer and full-frame letterboxing are local protocol choices.
+seed: 42
+output_dir: outputs/WLASL_TEAM_RGB_original_capacity_5w1s_seed42
+data:
+  metadata: ../mfpa_fslr/data/wlasl_60_20_20/metadata.csv
+  cache_dir: data/wlasl_rgb_landmarks_t8
+model:
+  backbone: resnet50
+  pretrained: true
+  freeze_backbone: false
+  frame_batch_size: 16
+  gradient_checkpointing: true
+  feature_dim: 2048
+  pattern_tokens: 60
+  frames: 8
+  heads: 8
+  variant: A0
+  parts:
+  - 0
+  - 1
+  - 2
+  lambda_motion: 1.0
+  support_aggregation: frames
+  support_adaptation: true
+  token_reduction: sum
+  negative_reduction: separate
+  negative_weights: opponent
+  temperature: 1.0
+  dropout: 0.1
+  attention_dropout: 0.1
+  part_weights:
+    temperature: 0.2
+    reliability_lambda: 0.5
+    uniform_shrinkage: 0.2
+    detach: false
+loss:
+  hard_pair_lambda: 0.0
+  hard_pair_warmup_epochs: 2
+  hard_pair_margin: 0.2
+  weight_kl_lambda: 0.0
+training:
+  n_way: 5
+  k_shot: 1
+  queries_per_class: 5
+  max_epochs: 10
+  episodes_per_epoch: 1000
+  lr: 0.0001
+  weight_decay: 0.01
+  grad_clip: 1.0
+  amp: true
+  log_every: 100
+evaluation:
+  val_episodes_file: data/episodes/wlasl_val_5w1s_seed123.json
+  val_episodes: 1000
+  seed: 123
